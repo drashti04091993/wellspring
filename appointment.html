@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Book your appointment with WellSpring Family Clinic easily online." />
+  <title>Appointment Request | WellSpring Family Clinic</title>
+
+  <!-- Link external CSS -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ===== Header / Navigation ===== -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">WellSpring Family Clinic</div>
+      <button class="menu-toggle" aria-label="Toggle navigation">&#9776;</button>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="bmi.html">BMI Calculator</a></li>
+        <li><a href="appointment.html" class="active">Appointment</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+
+  <main class="appointment-main">
+    <div class="appointment-container">
+      <h1 class="appointment-title">Book an Appointment</h1>
+      <form id="appointmentForm" class="appointment-form" novalidate>
+        <div class="appointment-group">
+          <label for="name">Full Name*</label>
+          <input type="text" id="name" name="name" required placeholder="Enter your name" />
+        </div>
+
+        <div class="appointment-group">
+          <label for="email">Email*</label>
+          <input type="email" id="email" name="email" required placeholder="Enter your email" />
+        </div>
+
+        <div class="appointment-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" />
+        </div>
+
+        <div class="appointment-group">
+          <label for="date">Preferred Date*</label>
+          <input type="date" id="date" name="date" required />
+        </div>
+
+        <div class="appointment-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Additional details..."></textarea>
+        </div>
+
+        <button type="submit" class="appointment-btn">Submit Request</button>
+        <p class="appointment-success" id="successMessage" style="display:none;">
+          ✅ Your appointment request has been submitted successfully!
+        </p>
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 WellSpring Family Clinic | All Rights Reserved</p>
+    <p><a href="mailto:info@wellspringclinic.com">info@wellspringclinic.com</a> | (123) 456-7890</p>
+  </footer>
+
+  <script>
+    const form = document.getElementById('appointmentForm');
+    const successMessage = document.getElementById('successMessage');
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      const date = form.date.value;
+
+      if (!name || !email || !date) {
+        alert("Please fill out all required fields.");
+        return;
+      }
+
+      const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+      if (!email.match(emailPattern)) {
+        alert("Please enter a valid email address.");
+        return;
+      }
+
+      successMessage.style.display = 'block';
+      form.reset();
+
+      setTimeout(() => {
+        successMessage.style.display = 'none';
+      }, 4000);
+    });
+  </script>
+
+</body>
+</html>
